@@ -1,10 +1,10 @@
 var minimumOperations = function(nums) {
-    let operations = 0;
+    let operation = 0;
     for (let num of nums){
-        let remainder = num % 3;
-        if (remainder !== 0){
-            operations += Math.min(remainder, 3 - remainder);
+        let rem = num % 3;
+        if (rem !== 0){
+            operation += Math.min(rem, 3 - rem);
         }
     }
-    return operations;
-    }
+    return operation;
+}
