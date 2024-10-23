@@ -12,21 +12,24 @@
  */
 var inorderTraversal = function(root) {
     const result = [];
-    const stack = [];
-    let current = root;
-
-    while (current || stack.length) {
-        // Go to the leftmost node
-        while (current) {
-            stack.push(current);
-            current = current.left;
+    
+    function traverse(node) {
+        if (node) {
+            traverse(node.left);  // Visit left subtree
+            result.push(node.val); // Visit node itself
+            traverse(node.right); // Visit right subtree
         }
-        // Process the top node
-        current = stack.pop();
-        result.push(current.val);
-        // Move to the right subtree
-        current = current.right;
     }
-
+    
+    traverse(root);
     return result;
 };
+
+// Example usage:
+// Creating a binary tree:   1
+//                          /   \
+//                         2     3
+//                        /
+//                       4
+const root = new TreeNode(1, new TreeNode(2, new TreeNode(4)), new TreeNode(3));
+console.log(inorderTraversal(root)); // Output: [4, 2, 1, 3]
